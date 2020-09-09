@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load pagination %}
+{% block title %}Posts{% endblock title %}
+
+{% block content %}
+
+{% for post in object_list %}
+	 <div class="list-group">
+		 <a href="{% url 'posts:post-details' pk=post.id %}" class="list-group-item bg-secondary list-group-item-action flex-column align-items-start active">
+    		<div class="d-flex w-100 justify-content-between">
+      			<h5 class="mb-1">{{ post.title }}</h5>
+      			<small>{{ post.pub_date }}</small>
+    		</div>
+    		<p class="mb-1">{{ post.body|truncatechars:50 }}</p>
+    		<small>{{ post.author }}</small>
+		 </a>
+	 </div>
+{% endfor %}
+{% if is_paginated %}
+		{% pagination page_obj %}
+{% endif %}
+
+
+{% endblock content %}

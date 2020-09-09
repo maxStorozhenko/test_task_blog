@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+    <br><h5 style="text-align: center">{{ object.title }}</h5><br>
+    <div class="media">
+        <div style="width: 20%">
+            <h6 class="mt-0">{{ object.author }}</h6>
+            <small>posted at: {{ object.pub_date }}</small><br>
+            <small>last update: {{ object.updated_at }}</small>
+        </div>
+    <br>
+        <div class="media-body">
+            {% if object.picture %}
+            <img src="{{ object.picture.url }}" class="mr-3" alt="..." width="100%">
+            {% endif %}
+            <p>{{ object.body }}</p>
+        </div>
+    </div>
+{% endblock content %}
